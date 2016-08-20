@@ -12,15 +12,17 @@ const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'devel
 let config;
 
 // basic configuration:
-const title = 'Chyno Surf Application';
+const title = 'Chyno Surf Report';
 const baseUrl = '/';
 const rootDir = path.resolve();
 const srcDir = path.resolve('src');
 const outDir = path.resolve('dist');
 
 const coreBundles = {
+
   bootstrap: [
-    'aurelia-bootstrapper-webpack',
+    
+   'aurelia-bootstrapper-webpack',
     'aurelia-polyfills',
     'aurelia-pal',
     'aurelia-pal-browser',
@@ -28,6 +30,7 @@ const coreBundles = {
     'bluebird'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
+  
   aurelia: [
     'aurelia-bootstrapper-webpack',
     'aurelia-binding',
@@ -53,13 +56,16 @@ const coreBundles = {
     'aurelia-templating-router',
     'aurelia-templating-resources'
   ]
+  
 }
 
 const baseConfig = {
   entry: {
+
     'app': [/* this is filled by the aurelia-webpack-plugin */],
-    'aurelia-bootstrap': coreBundles.bootstrap,
-    'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
+    'aurelia-bootstrap': coreBundles.bootstrap
+   // 'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
+
   },
   output: {
     path: outDir,
@@ -73,10 +79,10 @@ switch (ENV) {
       baseConfig,
 
       require('@easy-webpack/config-env-production')
-        ({compress: true}),
-        
+        ({ compress: true }),
+
       require('@easy-webpack/config-aurelia')
-        ({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
+        ({ root: rootDir, src: srcDir, title: title, baseUrl: baseUrl }),
 
       require('@easy-webpack/config-babel')(),
       require('@easy-webpack/config-html')(),
@@ -89,28 +95,28 @@ switch (ENV) {
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
-        ({minify: true}),
+        ({ minify: true }),
 
       require('@easy-webpack/config-copy-files')
-        ({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }]}),
+        ({ patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-common-chunks-simple')
-        ({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
+        ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
 
       require('@easy-webpack/config-uglify')
-        ({debug: false})
+        ({ debug: false })
     );
     break;
-  
+
   case 'test':
     config = generateConfig(
       baseConfig,
 
       require('@easy-webpack/config-env-development')
-        ({devtool: 'inline-source-map'}),
+        ({ devtool: 'inline-source-map' }),
 
       require('@easy-webpack/config-aurelia')
-        ({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
+        ({ root: rootDir, src: srcDir, title: title, baseUrl: baseUrl }),
 
       require('@easy-webpack/config-babel')(),
       require('@easy-webpack/config-html')(),
@@ -127,7 +133,7 @@ switch (ENV) {
       require('@easy-webpack/config-test-coverage-istanbul')()
     );
     break;
-  
+
   default:
   case 'development':
     process.env.NODE_ENV = 'development';
@@ -137,7 +143,7 @@ switch (ENV) {
       require('@easy-webpack/config-env-development')(),
 
       require('@easy-webpack/config-aurelia')
-        ({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
+        ({ root: rootDir, src: srcDir, title: title, baseUrl: baseUrl }),
 
       require('@easy-webpack/config-babel')(),
       require('@easy-webpack/config-html')(),
@@ -150,13 +156,13 @@ switch (ENV) {
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
-        ({minify: false}),
+        ({ minify: false }),
 
       require('@easy-webpack/config-copy-files')
-        ({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }]}),
+        ({ patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-common-chunks-simple')
-        ({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'})
+        ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' })
     );
     break;
 }
