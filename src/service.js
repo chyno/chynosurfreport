@@ -18,7 +18,8 @@ export class Service {
     {
          return this.httpClient.fetch("/api/userLocation/" + this.userName)
             .catch((r) => {
-                alert(r);
+                alert('Error in fetch call for user location. Error:' + r);
+                return({});
             })
             .then(response => {
                 if (response.ok) {
@@ -31,7 +32,8 @@ export class Service {
             )
             .then(locations => {
               return locations;
-            });
+            })
+            ;
 
     }
 }

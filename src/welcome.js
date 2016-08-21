@@ -26,7 +26,7 @@ export class Welcome {
                this.selectedLocationFromDD = this.selectedLocation;
                return this.renderForcast();
            }
-        });
+        }).catch((err) => alert(err));
     }
 
    renderForcast() {
