@@ -115,7 +115,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\app\package.json" (
   echo npm install webpack
    call :ExecuteCmd !NPM_CMD! install  webpack -g
    echo webpack build
-   call webpack --production
+   call webpack --p
   
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
