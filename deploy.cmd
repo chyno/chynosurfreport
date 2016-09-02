@@ -101,25 +101,16 @@ echo  3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
 
-
-echo 4. Install npm packages in app
-IF EXIST "%DEPLOYMENT_TARGET%\app\package.json" (
-  
-  pushd "%DEPLOYMENT_TARGET%\app"
-   echo npm install
-  call :ExecuteCmd !NPM_CMD! install --production
   echo npm install webpack
    call :ExecuteCmd !NPM_CMD! install  webpack -g
-   echo webpack build
+   echo webpack build 
    call webpack --p
-  
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
+
+
 
 
  
