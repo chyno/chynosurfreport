@@ -102,10 +102,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
 
-  echo npm install webpack
-   call :ExecuteCmd !NPM_CMD! install  webpack -g
-   echo webpack build 
-   call webpack --p
+  
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
