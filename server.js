@@ -40,7 +40,7 @@ app.use('/', api);
 
 //var debug = require('debug')('aurelia-node');
 
-/*
+
 if ( app.get('env') === 'development')
 {
    webpackMiddleware = require('webpack-dev-middleware');
@@ -53,7 +53,7 @@ if ( app.get('env') === 'development')
    }
    ));
 }
-*/
+
 
 var server = app.listen(app.get('port'), 
 
@@ -63,7 +63,7 @@ var server = app.listen(app.get('port'),
     console.log('Error: ' + err);
   }
    console.log('Express server listening on port ' + server.address().port);
-   console.log('Express server listening on port: ' + server.address().port);
+  
 });
 
 
