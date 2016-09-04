@@ -62,7 +62,7 @@ var server = app.listen(app.get('port'),
   if (err) {
     console.log('Error: ' + err);
   }
-   debug('Express server listening on port ' + server.address().port);
+   console.log('Express server listening on port ' + server.address().port);
    console.log('Express server listening on port: ' + server.address().port);
 });
 
